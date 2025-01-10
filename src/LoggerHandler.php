@@ -87,21 +87,34 @@ class LoggerHandler extends AbstractProcessingHandler
         $loggerColour = new LoggerColour($level);
 
         return new LoggerMessage([
-            'summary' => $level . ($this->name ? ': ' . $this->name : ''),
-            'themeColor' => (string)$loggerColour,
-            'sections' => [
-                array_merge(config('teams.show_avatars', true) ? [
-                    'activityTitle' => $this->name,
-                    'activityText' => $message,
-                    'activityImage' => (string)new LoggerAvatar($level),
-                    'facts' => $facts,
-                    'markdown' => true
-                ] : [
-                    'activityTitle' => $this->name,
-                    'activityText' => $message,
-                    'facts' => $facts,
-                    'markdown' => true
-                ], config('teams.show_type', true) ? ['activitySubtitle' => '<span style="color:#' . (string)$loggerColour . '">' . $level . '</span>',] : [])
+            'type' => 'message',
+            'attachments' => [
+                [
+                    'contentType' => 'application/vnd.microsoft.card.adaptive',
+                    'content' => [
+                        'type' => 'AdaptiveCard',
+                        'body' => [
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $this->name,
+                                'isSubtle' => true,
+                            ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $level,
+                                'size' => 'Large',
+                                'color' => 'warning',
+                                'weight' => 'bolder'
+                            ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $message,
+                                'separator' => true,
+                            ]
+                        ],
+                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json'
+                    ]
+                ]
             ]
         ]);
     }
@@ -143,7 +156,6 @@ class LoggerHandler extends AbstractProcessingHandler
 
         curl_exec($ch);
     }
-
 
     /**
      * Create facts name-value pairs
