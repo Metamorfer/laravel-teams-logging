@@ -99,24 +99,24 @@ class LoggerHandler extends AbstractProcessingHandler
                             'items' => [
                                 [
                                     'type' => 'TextBlock',
-                                    'text' => '$this->name',
+                                    'text' => $this->name,
                                     'horizontalAlignment' => 'center',
                                     'style' => 'heading',
                                     'isSubtle' => true
                                 ],
                                 [
                                     'type' => 'TextBlock',
-                                    'text' => 'error',
+                                    'text' => $level,
                                     'horizontalAlignment' => 'center',
                                     'size' => 'Large',
                                     'style' => 'heading',
-                                    'color' => 'warning',
+                                    'color' => $loggerColour,
                                     'weight' => 'bolder',
                                     'separator' => true
                                 ],
                                 [
                                     'type' => 'TextBlock',
-                                    'text' => 'test message',
+                                    'text' => $message,
                                     'separator' => true,
                                     'wrap' => true,
                                     'height' => 'stretch',
