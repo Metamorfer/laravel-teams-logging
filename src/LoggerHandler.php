@@ -99,7 +99,6 @@ class LoggerHandler extends AbstractProcessingHandler
                                 'type' => 'TextBlock',
                                 'text' => $this->name,
                                 'horizontalAlignment' => 'center',
-                                'style' => 'heading',
                                 'isSubtle' => true
                             ],
                             [
@@ -107,8 +106,7 @@ class LoggerHandler extends AbstractProcessingHandler
                                 'text' => $level,
                                 'horizontalAlignment' => 'center',
                                 'size' => 'Large',
-                                'style' => 'heading',
-                                'color' => $loggerColour,
+                                'color' => 'warning',
                                 'weight' => 'bolder',
                                 'separator' => true
                             ],
