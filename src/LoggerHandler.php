@@ -92,30 +92,34 @@ class LoggerHandler extends AbstractProcessingHandler
                 [
                     'contentType' => 'application/vnd.microsoft.card.adaptive',
                     'content' => [
+                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
                         'body' => [
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $this->name,
-                                'isSubtle' => true,
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $level,
-                                'size' => 'Large',
-                                'color' => 'warning',
-                                'weight' => 'bolder'
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $message,
-                                'separator' => true,
-                            ]
-                        ],
-                        '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json'
+                            {
+                                "type": "Container",
+                                "items": [
+                                    {
+                                        'type' => 'TextBlock',
+                                        'text' => $this->name,
+                                        'isSubtle' => true,
+                                    },
+                                    {
+                                        'type' => 'TextBlock',
+                                        'text' => $level,
+                                        'size' => 'Large',
+                                        'color' => 'warning',
+                                        'weight' => 'bolder'
+                                    },
+                                    {
+                                        'type' => 'TextBlock',
+                                        'text' => $message,
+                                        'separator' => true,
+                                    }
+                                ],
+                            }
+                        ]
                     ]
                 ]
-            ]
         ]);
     }
 
