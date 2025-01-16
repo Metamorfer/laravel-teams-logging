@@ -95,34 +95,31 @@ class LoggerHandler extends AbstractProcessingHandler
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
                         'body' => [
-                            'type' => 'Container',
-                            'items' => [
-                                [
-                                    'type' => 'TextBlock',
-                                    'text' => $this->name,
-                                    'horizontalAlignment' => 'center',
-                                    'style' => 'heading',
-                                    'isSubtle' => true
-                                ],
-                                [
-                                    'type' => 'TextBlock',
-                                    'text' => $level,
-                                    'horizontalAlignment' => 'center',
-                                    'size' => 'Large',
-                                    'style' => 'heading',
-                                    'color' => $loggerColour,
-                                    'weight' => 'bolder',
-                                    'separator' => true
-                                ],
-                                [
-                                    'type' => 'TextBlock',
-                                    'text' => $message,
-                                    'separator' => true,
-                                    'wrap' => true,
-                                    'height' => 'stretch',
-                                    'spacing' => 'extraLarge'
-                                ]
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $this->name,
+                                'horizontalAlignment' => 'center',
+                                'style' => 'heading',
+                                'isSubtle' => true
                             ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $level,
+                                'horizontalAlignment' => 'center',
+                                'size' => 'Large',
+                                'style' => 'heading',
+                                'color' => $loggerColour,
+                                'weight' => 'bolder',
+                                'separator' => true
+                            ],
+                            [
+                                'type' => 'TextBlock',
+                                'text' => $message,
+                                'separator' => true,
+                                'wrap' => true,
+                                'height' => 'stretch',
+                                'spacing' => 'extraLarge'
+                            ]
                         ]
                     ]
                 ]
