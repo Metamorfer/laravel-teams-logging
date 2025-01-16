@@ -95,31 +95,38 @@ class LoggerHandler extends AbstractProcessingHandler
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
                         'body' => [
-                            {
-                                "type": "Container",
-                                "items": [
-                                    {
-                                        'type' => 'TextBlock',
-                                        'text' => $this->name,
-                                        'isSubtle' => true,
-                                    },
-                                    {
-                                        'type' => 'TextBlock',
-                                        'text' => $level,
-                                        'size' => 'Large',
-                                        'color' => 'warning',
-                                        'weight' => 'bolder'
-                                    },
-                                    {
-                                        'type' => 'TextBlock',
-                                        'text' => $message,
-                                        'separator' => true,
-                                    }
+                            'type' => 'Container',
+                            'items' => [
+                                [
+                                    'type' => 'TextBlock',
+                                    'text' => '$this->name',
+                                    'horizontalAlignment' => 'center',
+                                    'style' => 'heading',
+                                    'isSubtle' => true
                                 ],
-                            }
+                                [
+                                    'type' => 'TextBlock',
+                                    'text' => 'error',
+                                    'horizontalAlignment' => 'center',
+                                    'size' => 'Large',
+                                    'style' => 'heading',
+                                    'color' => 'warning',
+                                    'weight' => 'bolder',
+                                    'separator' => true
+                                ],
+                                [
+                                    'type' => 'TextBlock',
+                                    'text' => 'test message',
+                                    'separator' => true,
+                                    'wrap' => true,
+                                    'height' => 'stretch',
+                                    'spacing' => 'extraLarge'
+                                ]
+                            ],
                         ]
                     ]
                 ]
+            ]
         ]);
     }
 
