@@ -94,17 +94,18 @@ class LoggerHandler extends AbstractProcessingHandler
                     'content' => [
                         '$schema' => 'http://adaptivecards.io/schemas/adaptive-card.json',
                         'type' => 'AdaptiveCard',
+                        'msteams' => [
+                            'width' => "Full"
+                        ],
                         'body' => [
                             [
                                 'type' => 'TextBlock',
                                 'text' => $this->name,
-                                'horizontalAlignment' => 'center',
                                 'isSubtle' => true
                             ],
                             [
                                 'type' => 'TextBlock',
                                 'text' => $level,
-                                'horizontalAlignment' => 'center',
                                 'size' => 'Large',
                                 'color' => 'warning',
                                 'weight' => 'bolder',
