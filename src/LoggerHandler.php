@@ -86,6 +86,53 @@ class LoggerHandler extends AbstractProcessingHandler
     {
         $loggerColour = new LoggerColour($level);
 
+        $body = [
+            [
+                'type' => 'TextBlock',
+                'text' => $this->name,
+                'isSubtle' => true
+            ],
+            [
+                'type' => 'TextBlock',
+                'text' => $level,
+                'size' => 'Large',
+                'color' => 'warning',
+                'weight' => 'bolder',
+                'separator' => true
+            ],
+            [
+                'type' => 'TextBlock',
+                'text' => $message,
+                'separator' => true,
+                'wrap' => true,
+                'height' => 'stretch',
+                'spacing' => 'extraLarge'
+            ]
+        ];
+
+        if (!empty($facts)) {
+            $body[] = [
+                'type' => 'TextBlock',
+                'text' => 'Stack trace:',
+                'size' => 'Large',
+                'color' => 'info',
+                'weight' => 'bolder',
+            ];
+
+            foreach ($facts as $fact) {
+                $formatedFacts[] = [
+                    'title' => $fact['name'],
+                    'value' => $fact['value'],
+                ];
+            }
+
+            $body[] = [
+                    'type' => 'FactSet',
+                    'spacing' => 'large',
+                    'facts' => $formatedFacts
+            ];
+        }
+
         return new LoggerMessage([
             'type' => 'message',
             'attachments' => [
@@ -97,29 +144,7 @@ class LoggerHandler extends AbstractProcessingHandler
                         'msteams' => [
                             'width' => "Full"
                         ],
-                        'body' => [
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $this->name,
-                                'isSubtle' => true
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $level,
-                                'size' => 'Large',
-                                'color' => 'warning',
-                                'weight' => 'bolder',
-                                'separator' => true
-                            ],
-                            [
-                                'type' => 'TextBlock',
-                                'text' => $message,
-                                'separator' => true,
-                                'wrap' => true,
-                                'height' => 'stretch',
-                                'spacing' => 'extraLarge'
-                            ]
-                        ]
+                        'body' => $body
                     ]
                 ]
             ]
